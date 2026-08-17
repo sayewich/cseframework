@@ -1,5 +1,423 @@
 <!doctype html>
-<html>
-<head><meta charset="utf-8"><title>CSEF</title></head>
-<body><h1>Customer Security Evangelism Framework</h1><p>Site coming soon.</p></body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSEF — Customer Security Evangelism Framework</title>
+<meta name="description" content="A practical model for building security capability across the SaaS shared-responsibility line. Five operating domains, a maturity model, and a measurement approach — a working hypothesis open for peer review.">
+<link rel="canonical" href="https://cseframework.org/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Customer Security Evangelism Framework (CSEF)",
+  "alternateName": "CSEF",
+  "description": "A practical model for building security capability across the SaaS shared-responsibility line: five operating domains, a maturity model, and a measurement approach for building customer security awareness, behavior, and capability.",
+  "author": {
+    "@type": "Person",
+    "name": "Mark Sayewich",
+    "jobTitle": "Director of Customer Security Evangelism",
+    "affiliation": {"@type": "Organization", "name": "Guidewire Software"}
+  },
+  "url": "https://cseframework.org/",
+  "keywords": ["customer security evangelism", "SaaS shared responsibility", "security awareness", "behavior change", "security maturity model"],
+  "isBasedOn": ["NIST CSF 2.0", "CIS Controls v8.1", "CSA CCM v4.1", "OWASP Security Culture"],
+  "creativeWorkStatus": "Working draft v0.2 — for peer review"
+}
+</script>
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f7fafb;
+    --text: #16232e;
+    --text-muted: #4d5f6d;
+    --navy: #204d68;
+    --blue: #7bb5c7;
+    --coral: #e68d6c;
+    --charcoal: #595959;
+    --sage: #8fa579;
+    --gold: #c9962e;
+    --border: #e2e8ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12191f;
+      --surface: #182028;
+      --text: #e7edf1;
+      --text-muted: #9db0bd;
+      --navy: #7bb5c7;
+      --border: #26323d;
+      --sage: #a9c290;
+      --gold: #e0ac3f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12191f;
+    --surface: #182028;
+    --text: #e7edf1;
+    --text-muted: #9db0bd;
+    --navy: #7bb5c7;
+    --border: #26323d;
+    --sage: #a9c290;
+    --gold: #e0ac3f;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  h1, h2, h3 { font-family: Georgia, "Iowan Old Style", serif; text-wrap: balance; font-weight: 400; }
+  a { color: var(--navy); }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  .wide { max-width: 880px; }
+
+  nav.topnav {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: .9rem 0;
+  }
+  nav.topnav .wrap.wide { display: flex; align-items: center; gap: 1.6rem; }
+  nav.topnav .brand { font: 700 1rem Georgia, serif; color: var(--text); text-decoration: none; margin-right: auto; }
+  nav.topnav a.link { font-size: .85rem; color: var(--text-muted); text-decoration: none; }
+  nav.topnav a.link:hover { color: var(--navy); }
+
+  header.hero { padding: 5rem 0 3.5rem; }
+  header.hero .eyebrow {
+    font: 600 .74rem/1 ui-monospace, "SF Mono", Menlo, monospace;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+    margin: 0 0 1rem;
+  }
+  header.hero h1 { font-size: 2.6rem; line-height: 1.15; margin: 0 0 1rem; }
+  header.hero p.tagline { font-size: 1.15rem; color: var(--text-muted); max-width: 60ch; margin: 0; }
+
+  section { padding: 3rem 0; border-top: 1px solid var(--border); }
+  section:first-of-type { border-top: none; }
+  section h2 { font-size: 1.6rem; margin: 0 0 1.1rem; }
+  section p { margin: 0 0 1rem; }
+  section p.lede { font-size: 1.08rem; color: var(--text-muted); max-width: 62ch; }
+
+  .domain-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem; margin-top: 1.5rem;
+  }
+  .domain-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.1rem 1.2rem;
+  }
+  .domain-card .tag {
+    display: inline-block; font: 700 .68rem/1 ui-monospace, monospace; letter-spacing: .05em;
+    padding: .2rem .45rem; border-radius: 4px; margin-bottom: .55rem; color: #fff;
+  }
+  .domain-card h3 { font-size: 1.02rem; margin: 0 0 .35rem; }
+  .domain-card p { font-size: .9rem; color: var(--text-muted); margin: 0; }
+  .d1 .tag { background: var(--blue); } .d2 .tag { background: var(--coral); }
+  .d3 .tag { background: var(--charcoal); } .d4 .tag { background: var(--sage); }
+  .d5 .tag { background: var(--gold); color: #2a2200; } .d6 .tag { background: var(--navy); }
+
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--text-muted); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; }
+  .wide-scroll { overflow-x: auto; }
+
+  blockquote {
+    margin: 1.4rem 0; padding: .2rem 0 .2rem 1.1rem; border-left: 3px solid var(--navy);
+    color: var(--text-muted); font-style: italic;
+  }
+
+  .maturity-band { display: flex; gap: .6rem; flex-wrap: wrap; margin: 1rem 0 1.5rem; }
+  .maturity-band span {
+    font-size: .82rem; padding: .35rem .7rem; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+  }
+
+  .download-list { list-style: none; padding: 0; margin: 1rem 0; }
+  .download-list li {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    padding: .8rem 0; border-bottom: 1px solid var(--border);
+  }
+  .download-list .name { font-weight: 600; }
+  .download-list .status { font-size: .8rem; color: var(--text-muted); }
+
+  footer.site-footer {
+    padding: 2.5rem 0 4rem; color: var(--text-muted); font-size: .85rem;
+  }
+  footer.site-footer a { color: var(--text-muted); }
+
+  code { font: .88em ui-monospace, "SF Mono", Menlo, monospace; background: var(--surface); padding: .1em .35em; border-radius: 3px; }
+  .refs { font-size: .85rem; color: var(--text-muted); }
+  .refs li { margin-bottom: .5rem; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap wide">
+    <a class="brand" href="#top">CSEF</a>
+    <a class="link" href="#framework">Framework</a>
+    <a class="link" href="#domains">Domains</a>
+    <a class="link" href="#paper">Read the paper</a>
+    <a class="link" href="#downloads">Downloads</a>
+    <a class="link" href="#about">About</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap wide">
+    <p class="eyebrow">customer security evangelism framework</p>
+    <h1>The Missing Security Program</h1>
+    <p class="tagline">Every SaaS platform invests heavily in securing its own infrastructure. Almost none invest in building the security capability of the people using it. That gap is where incidents live — and where CSEF starts.</p>
+  </div>
+</header>
+
+<section id="framework">
+  <div class="wrap wide">
+    <h2>The missing program</h2>
+    <p class="lede">NIST CSF 2.0, the CIS Controls, and the CSA Cloud Controls Matrix answer important questions about outcomes, controls, and responsibility. None of them answer a different question: how should a SaaS provider systematically build security awareness, behavior, and capability in the customers who share its risk?</p>
+    <p>In a November 2023 Rewind survey of 419 IT decision-makers, 79% said they believed SaaS applications include backup and recovery capabilities by default. What providers actually include — and what customers must protect themselves — varies by product and contract. The result shouldn't be generalized to every SaaS customer or responsibility; it's evidence that important assumptions can remain hidden even among IT decision-makers.</p>
+    <p><strong>Customer Security Evangelism is the structured practice of building security awareness, changing security behavior, and increasing security capability within a provider's customer base to reduce shared risk.</strong> Its primary output is a more capable and secure customer.</p>
+  </div>
+</section>
+
+<section id="domains">
+  <div class="wrap wide">
+    <h2>Five core domains, plus a collective-defense extension</h2>
+    <p class="lede">Each domain can be assessed against CSEF's own four-level practice-maturity model — Reactive, Defined, Measured, Adaptive. These are CSEF-specific levels, not NIST CSF Tiers.</p>
+    <div class="domain-grid">
+      <div class="domain-card d1"><span class="tag">D1</span><h3>Audience Intelligence</h3><p>Understand who the program needs to reach, what they currently believe and do, and what could move them to act.</p></div>
+      <div class="domain-card d2"><span class="tag">D2</span><h3>Narrative &amp; Content Design</h3><p>Translate technical security expectations into accurate, actionable communication for a specific audience.</p></div>
+      <div class="domain-card d3"><span class="tag">D3</span><h3>Channel &amp; Engagement Strategy</h3><p>Deliver the right intervention through the right channel, messenger, and moment.</p></div>
+      <div class="domain-card d4"><span class="tag">D4</span><h3>Trust &amp; Credibility</h3><p>Earn the confidence required for customers to believe and act on security guidance.</p></div>
+      <div class="domain-card d5"><span class="tag">D5</span><h3>Behavior Change Measurement</h3><p>Determine whether the program changes customer capability, and use the evidence to improve it.</p></div>
+      <div class="domain-card d6"><span class="tag">D6</span><h3>Coordinated Evangelism</h3><p>Extension: help providers serving shared customers reduce contradictory guidance and improve collective learning.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="paper">
+  <div class="wrap">
+    <h2>Read the full paper</h2>
+    <p class="lede">Working draft v0.2 — Mark Sayewich, July 2026. A working model to test, not an industry standard or a claim that one company has the final answer.</p>
+
+    <h3>Foreword</h3>
+    <p>SaaS providers invest heavily in securing the services they operate. Customers still make security decisions about identity, access, configuration, data, integrations, recovery, and use. Control frameworks and shared-responsibility models help describe those obligations. They do not tell a provider how to build the customer's ability and motivation to meet them.</p>
+    <p>Many providers already perform pieces of this work through documentation, customer success, product security, trust, training, community, and executive engagement. The practice is rarely treated as one operating discipline with clear boundaries and outcome measures.</p>
+    <p>Customer Security Evangelism Framework (CSEF) is a proposed synthesis of that discipline. It is based on operating experience and ideas adapted from security frameworks, social and behavioral change, health literacy, diffusion research, and program evaluation. It is a working model to test — not an industry standard or a claim that one company has the final answer.</p>
+
+    <h3>1. The missing program</h3>
+    <p>NIST Cybersecurity Framework (CSF) 2.0 provides a taxonomy of cybersecurity outcomes. The CIS Controls prioritize technical safeguards. The Cloud Security Alliance Cloud Controls Matrix (CCM) helps cloud providers and customers identify control applicability and ownership across cloud-service models.</p>
+    <p>These sources answer important questions about outcomes, controls, and responsibility. CSEF addresses a different question:</p>
+    <blockquote>How should a SaaS provider systematically build security awareness, behavior, and capability in the customers who share its risk?</blockquote>
+    <p>That question matters because documenting responsibility does not ensure that a customer understands or acts on it. One vendor-sponsored 2024 survey of 419 IT decision-makers illustrates the potential gap: 79% of respondents said they believed SaaS applications included backup and recovery by default. What providers actually include — and what customers must protect themselves — varies by product and contract. The result should not be generalized to every SaaS customer or responsibility; it is evidence that important assumptions can remain hidden even among IT decision-makers.</p>
+
+    <h3>2. Definition and boundaries</h3>
+    <p><strong>Customer Security Evangelism is the structured practice of building security awareness, changing security behavior, and increasing security capability within a provider's customer base to reduce shared risk.</strong> Its primary output is a more capable and secure customer.</p>
+    <p>It is distinct from:</p>
+    <ul>
+      <li><strong>Marketing</strong>, whose primary purpose is to create demand and preference.</li>
+      <li><strong>Sales enablement</strong>, whose primary purpose is to help progress purchase decisions.</li>
+      <li><strong>Customer success</strong>, whose primary purpose is to help customers realize product value.</li>
+      <li><strong>Compliance management</strong>, whose primary purpose is to demonstrate or enforce obligations.</li>
+      <li><strong>Product security</strong>, whose primary purpose is to secure the provider's products and development practices.</li>
+    </ul>
+    <p>Customer Security Evangelism collaborates with all of these functions. It loses credibility when customers cannot distinguish its security guidance from a commercial message.</p>
+
+    <h3>3. Design principles</h3>
+    <p>CSEF uses six principles:</p>
+    <ol>
+      <li><strong>Begin with the audience.</strong> Customer security maturity, role, incentives, language, and context shape what can work.</li>
+      <li><strong>Define the behavior.</strong> "Increase awareness" is not a sufficient outcome; name the decision or action that should change.</li>
+      <li><strong>Make guidance usable.</strong> Translate controls into clear actions without removing the technical truth.</li>
+      <li><strong>Use trusted messengers and channels.</strong> Accuracy is necessary, but it is not enough to produce action.</li>
+      <li><strong>Measure capability, not communication volume.</strong> Reach is an input; changed practice is the result.</li>
+      <li><strong>Learn in the open.</strong> A framework intended for an industry must be tested and improved by an industry.</li>
+    </ol>
+
+    <h3>4. Framework architecture</h3>
+    <p>CSEF has five core operating domains. A sixth extension applies when multiple providers coordinate for shared customers.</p>
+    <p><strong>CSEF maturity levels.</strong> Each domain can be assessed using four CSEF-specific levels — this grades the <em>provider's own program</em>, and is a separate scale from customer security maturity (see Domain 1 below):</p>
+    <div class="wide-scroll">
+    <table>
+      <tr><th>Level</th><th>Name</th><th>Meaning</th></tr>
+      <tr><td>1</td><td>Reactive</td><td>Work is ad hoc, request-driven, and dependent on individual effort.</td></tr>
+      <tr><td>2</td><td>Defined</td><td>Purpose, ownership, audiences, and repeatable practices are documented.</td></tr>
+      <tr><td>3</td><td>Measured</td><td>The program uses evidence to assess reach, behavior, and capability outcomes.</td></tr>
+      <tr><td>4</td><td>Adaptive</td><td>Customer evidence continuously changes priorities, design, and delivery.</td></tr>
+    </table>
+    </div>
+    <p>These are CSEF maturity levels. They are not NIST CSF Tiers. NIST Tiers characterize the rigor of cybersecurity risk-governance and risk-management practices; CSEF uses its own levels to assess an evangelism program.</p>
+
+    <h3>5. The five core domains</h3>
+
+    <h4>Domain 1 — Audience Intelligence</h4>
+    <p><strong>Purpose:</strong> Understand who the program needs to reach, what they currently believe and do, and what could move them to act.</p>
+    <p>Security guidance lands differently with a CISO, cloud administrator, developer, risk leader, and executive sponsor. Effective work begins with evidence about the audience rather than assumptions about an "average customer."</p>
+    <p>Key practices:</p>
+    <ul>
+      <li>segment customers by role, context, <strong>customer security maturity</strong>, and relevant responsibilities;</li>
+      <li>identify the current behavior and the desired behavior for each priority segment;</li>
+      <li>map the customer journey from unfamiliarity to sustained practice and advocacy;</li>
+      <li>gather voice-of-customer evidence through interviews, councils, support themes, and field teams;</li>
+      <li>use product or engagement telemetry only when appropriate, lawful, and interpreted with context;</li>
+      <li>document barriers, incentives, trusted messengers, and moments when action is most likely.</li>
+    </ul>
+    <p><strong>Customer security maturity</strong> is deliberately its own informal, qualitative band — distinct from the CSEF program-maturity levels above — used only for this kind of segmentation:</p>
+    <div class="maturity-band">
+      <span>Novice</span><span>Developing</span><span>Advanced</span>
+    </div>
+    <p>The approach is informed by social and behavioral change practice. UNICEF's guidance recommends audience research, social listening or interviews, and attention to culture, language, literacy, trusted messengers, and current awareness before designing messages. The Health Belief Model is one useful lens for exploring perceived risk, expected benefit, barriers, cues to action, and self-efficacy; it is not a universal predictor or a CSEF measurement system.</p>
+
+    <h4>Domain 2 — Narrative and Content Design</h4>
+    <p><strong>Purpose:</strong> Translate technical security expectations into accurate, actionable communication for a specific audience.</p>
+    <p>Key practices:</p>
+    <ul>
+      <li>create a narrative hierarchy for strategic, tactical, and operational audiences;</li>
+      <li>map guidance to the controls and responsibility models customers already use;</li>
+      <li>state the desired action, owner, reason, and next step;</li>
+      <li>choose formats appropriate to the behavior, including guidance, workshops, demonstrations, exercises, or decision tools;</li>
+      <li>use plain language while preserving necessary technical precision;</li>
+      <li>test important materials with representative customers before broad release.</li>
+    </ul>
+    <p>CDC defines plain language as communication an audience can understand the first time and recommends knowing the audience and purpose, putting the most important message first, using active voice, and limiting sentences to one idea. CSEF applies those principles to security communication.</p>
+
+    <h4>Domain 3 — Channel and Engagement Strategy</h4>
+    <p><strong>Purpose:</strong> Deliver the right intervention through the right channel, messenger, and moment.</p>
+    <p>Key practices:</p>
+    <ul>
+      <li>select channels based on audience behavior rather than organizational convenience;</li>
+      <li>combine durable owned channels with interactive and community channels;</li>
+      <li>create high-trust feedback mechanisms such as a customer security council;</li>
+      <li>coordinate timing with product changes, threats, regulatory developments, and customer decision points;</li>
+      <li>design a route from broad awareness to deeper guidance and direct help;</li>
+      <li>track whether priority audiences received, understood, and used the guidance.</li>
+    </ul>
+    <p>Channel is part of the intervention. A correct message delivered where the intended audience will not see or trust it is not effective communication.</p>
+
+    <h4>Domain 4 — Trust and Credibility</h4>
+    <p><strong>Purpose:</strong> Earn the confidence required for customers to believe and act on security guidance.</p>
+    <p>Key practices:</p>
+    <ul>
+      <li>separate security guidance visibly from product promotion;</li>
+      <li>show evidence, limitations, and uncertainty rather than overstating a claim;</li>
+      <li>be transparent about the provider's role and the customer's role;</li>
+      <li>maintain a consistent position across documentation, field teams, and executive communication;</li>
+      <li>contribute to professional communities and peer review;</li>
+      <li>identify and support credible customer champions.</li>
+    </ul>
+    <p>Diffusion research emphasizes that adoption moves through social systems and is influenced by communication channels and opinion leadership. CSEF applies that insight without assuming that every customer community behaves identically.</p>
+
+    <h4>Domain 5 — Behavior Change Measurement</h4>
+    <p><strong>Purpose:</strong> Determine whether the program changes customer capability and use the evidence to improve it.</p>
+    <p>Key practices:</p>
+    <ul>
+      <li>define a program logic connecting activity to near-term and longer-term outcomes;</li>
+      <li>establish a baseline for the target segment and behavior;</li>
+      <li>use a measurement ladder: <em>delivery</em> (reached the audience) → <em>comprehension</em> (understood responsibility and action) → <em>intent</em> (decided to act) → <em>behavior</em> (action occurred) → <em>capability</em> (repeatable and sustained) → <em>risk outcome</em> (exposure or incident conditions changed);</li>
+      <li>combine quantitative measures with interviews and customer evidence;</li>
+      <li>distinguish correlation, contribution, and causation;</li>
+      <li>report what the program learned and changed, not only what it produced.</li>
+    </ul>
+    <p>CDC's current Program Evaluation Framework recommends assessing context, describing the program, focusing the evaluation design, gathering credible evidence, supporting conclusions, and acting on findings. CSEF borrows that learning discipline rather than claiming a security communication can always be isolated as the cause of a risk outcome.</p>
+
+    <h3>6. Collective-defense extension</h3>
+    <h4>Domain 6 — Coordinated Evangelism</h4>
+    <p><strong>Purpose:</strong> Help providers serving shared customers reduce contradictory guidance and improve collective learning.</p>
+    <p>Key practices:</p>
+    <ul>
+      <li>establish a common vocabulary for shared-responsibility communication;</li>
+      <li>identify messages that should be consistent and areas where provider-specific guidance must remain distinct;</li>
+      <li>coordinate customer guidance during cross-industry security events when appropriate;</li>
+      <li>develop joint, vendor-neutral resources;</li>
+      <li>share aggregated or anonymized learning within legal, privacy, and competitive constraints;</li>
+      <li>make contribution, review, and conflict-resolution processes explicit.</li>
+    </ul>
+    <p>FS-ISAC demonstrates how a member-driven community can build sector-wide visibility and resilience through trusted information sharing. CSEF does not claim that coordinated customer evangelism is equivalent to financial-sector threat intelligence. It borrows the principle that shared systemic problems sometimes require trusted coordination.</p>
+
+    <h3>7. Relationship to adjacent frameworks and guidance</h3>
+    <div class="wide-scroll">
+    <table>
+      <tr><th>Source</th><th>What it contributes</th><th>What CSEF adds</th></tr>
+      <tr><td>NIST CSF 2.0</td><td>High-level cybersecurity outcomes, Profiles, and Tiers for risk governance and management</td><td>A customer-facing program for building understanding and capability around relevant outcomes</td></tr>
+      <tr><td>CIS Controls v8.1</td><td>Prioritized safeguards and Implementation Groups</td><td>Audience-specific translation and adoption support</td></tr>
+      <tr><td>CSA CCM v4.1</td><td>Cloud controls plus provider/customer applicability and ownership</td><td>A practice for helping customers understand and act on their responsibilities</td></tr>
+      <tr><td>OWASP Security Culture</td><td>Guidance for security culture in application-security and software-development programs</td><td>A distinct focus on the external customer base of a SaaS provider</td></tr>
+      <tr><td>UNICEF and CDC communication guidance</td><td>Audience research, behavior-aware messaging, plain language, and program evaluation</td><td>Application of those disciplines to customer security</td></tr>
+    </table>
+    </div>
+    <p>CSEF is intended to complement these sources, not replace or imply endorsement by them.</p>
+
+    <h3>8. How to start</h3>
+    <p>An organization can begin without launching every domain at once:</p>
+    <ol>
+      <li>Choose one customer segment and one shared-responsibility behavior.</li>
+      <li>Establish the segment's current CSEF maturity level and evidence baseline.</li>
+      <li>Frame the behavior for strategic, tactical, and operational audiences.</li>
+      <li>Deliver the intervention through a trusted channel and messenger.</li>
+      <li>Measure comprehension, action, and sustained capability.</li>
+      <li>Use what is learned to improve the next cycle.</li>
+    </ol>
+
+    <h3>9. Validation and community development</h3>
+    <p>CSEF v0.2 should be treated as a hypothesis expressed clearly enough to test.</p>
+    <p>Recommended next steps:</p>
+    <ol>
+      <li>invite review from customer-facing security practitioners and customer security leaders;</li>
+      <li>publish the framework's scope, non-goals, and contribution principles;</li>
+      <li>pilot the domains and maturity levels with two or three willing organizations;</li>
+      <li>record counterexamples, missing practices, and terminology that does not travel across sectors;</li>
+      <li>form a small, vendor-neutral contributor group;</li>
+      <li>resolve intellectual-property ownership and select an open documentation license;</li>
+      <li>decide whether an existing project, a new OWASP documentation project, or another body is the right long-term home.</li>
+    </ol>
+    <p>OWASP already maintains a Security Culture documentation project focused on application-security programs. Any CSEF proposal to OWASP should explain its customer-facing scope and begin with consultation rather than an assumption that a separate project will be accepted.</p>
+
+    <h3 class="refs-heading">References</h3>
+    <ol class="refs">
+      <li>Pascoe, C., Quinn, S., and Scarfone, K. (2024). <em>The NIST Cybersecurity Framework (CSF) 2.0</em>. NIST CSWP 29. <a href="https://doi.org/10.6028/NIST.CSWP.29">doi.org/10.6028/NIST.CSWP.29</a></li>
+      <li>Center for Internet Security. (2024). <em>CIS Critical Security Controls v8.1</em>. <a href="https://www.cisecurity.org/controls/v8-1">cisecurity.org/controls/v8-1</a></li>
+      <li>Cloud Security Alliance. (2026). <em>Introductory Guidance to Cloud Controls Matrix v4.1</em>. <a href="https://cloudsecurityalliance.org/artifacts/introductory-guidance-to-ccm">cloudsecurityalliance.org</a></li>
+      <li>Rewind. (2024). <em>2024 State of SaaS Data and Recovery</em>. Survey of 419 IT decision-makers, November 2023, with Propeller Insights. <a href="https://rewind.com/wp-content/uploads/2024/05/RWD_SaaS_Data_Backup_Report_2024.pdf">rewind.com</a></li>
+      <li>UNICEF. (2026). <em>A Social and Behavioural Change Message Guide</em>. <a href="https://www.unicef.org/reports/social-and-behavioural-change-message-guide">unicef.org</a></li>
+      <li>Rosenstock, I. M. (1974). "The Health Belief Model and Preventive Health Behavior." <em>Health Education Monographs</em>, 2, 354–386. <a href="https://doi.org/10.1177/109019817400200405">doi.org/10.1177/109019817400200405</a></li>
+      <li>Centers for Disease Control and Prevention. (2025). <em>Plain Language Materials &amp; Resources</em>. <a href="https://www.cdc.gov/health-literacy/php/develop-materials/plain-language.html">cdc.gov</a></li>
+      <li>Rogers, E. M. (2003). <em>Diffusion of Innovations</em> (5th ed.). Free Press.</li>
+      <li>Kidder, D. P., et al. (2024). "CDC Program Evaluation Framework, 2024." <em>MMWR Recommendations and Reports</em>, 73(6), 1–37. <a href="https://www.cdc.gov/mmwr/volumes/73/rr/rr7306a1.htm">cdc.gov</a></li>
+      <li>FS-ISAC. (2026). <em>FS-ISAC Reveals New Strategy for Cybersecurity &amp; Resilience of the Global Financial System</em>. <a href="https://www.fsisac.com/newsroom/fsisac-reveals-new-strategy-for-cybersecurity-resilience-of-the-global-financial-system">fsisac.com</a></li>
+      <li>OWASP Foundation. (2024). <em>OWASP Security Culture, version 1.1</em>. <a href="https://owasp.org/www-project-security-culture/">owasp.org</a></li>
+      <li>ISC2. (2023). <em>Five by Five: Cyber Leadership — ISC2 Security Congress 2023</em>. <a href="https://events.isc2.org/p/s/five-by-five-cyber-leadership-5992">events.isc2.org</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="downloads">
+  <div class="wrap wide">
+    <h2>Downloads</h2>
+    <p class="lede">A save-and-forward version, for anyone who'd rather read this offline or hand it to a colleague.</p>
+    <ul class="download-list">
+      <li><span class="name">CSEF whitepaper (PDF)</span><span class="status">In progress — read the full text above for now</span></li>
+      <li><span class="name">CSEF one-pager (PDF)</span><span class="status">In progress — read the full text above for now</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>Mark Sayewich is Director of Customer Security Evangelism at Guidewire Software. His work focuses on helping insurance customers and partners understand shared responsibility, apply practical security guidance, and strengthen security capability. He presented on Customer Security Evangelism at ISC2 Security Congress 2023 and is developing CSEF as a vendor-neutral working model for peer review.</p>
+    <p>This version reflects early conversations with Guidewire colleagues and security practitioners. Individual reviewers and contributors will be credited with permission in future versions.</p>
+    <p>No external standards body, conference, industry group, or employer has endorsed this working draft. Guidewire is identified as the author's employer, not as the owner of an industry standard. CSEF is Mark's individual working hypothesis, built from hands-on experience, offered here for peer review.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap wide">
+    <p>cseframework.org · Customer Security Evangelism Framework · Working draft v0.2</p>
+  </div>
+</footer>
+
+</body>
 </html>
