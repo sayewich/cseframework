@@ -1,0 +1,63 @@
+/* Variant C — Confident. Near-black/white grounds, oversized display type,
+   huge whitespace, borderless cards separated by space alone. Apple-adjacent. */
+:root {
+  --bg: #ffffff; --surface: #fafafa; --text: #0a0a0a; --text-muted: #6e6e73;
+  --navy: #1b4a63; --blue: #7bb5c7; --coral: #e68d6c; --charcoal: #595959; --sage: #8fa579; --gold: #c9962e;
+  --border: #ececec;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000; --surface: #0e0e0e; --text: #f5f5f7; --text-muted: #86868b; --navy: #7bb5c7; --border: #1d1d1f;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.55 -apple-system, "SF Pro Text", "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: -apple-system, "SF Pro Display", "Segoe UI", sans-serif; font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
+a { color: var(--navy); }
+.wrap { max-width: 680px; margin: 0 auto; padding: 0 1.75rem; }
+.wide { max-width: 900px; }
+
+.topnav { position: sticky; top: 0; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem 0; }
+.topnav .wrap { display: flex; gap: 2rem; align-items: center; }
+.brand { font: 600 1rem -apple-system, sans-serif; color: var(--text); text-decoration: none; margin-right: auto; }
+.topnav .link { font: 500 .82rem -apple-system, sans-serif; color: var(--text-muted); text-decoration: none; }
+.topnav .link:hover { color: var(--text); }
+
+.hero { padding: 8rem 0 5rem; text-align: center; }
+.hero .wrap { max-width: 780px; }
+.eyebrow { font: 600 .85rem -apple-system, sans-serif; color: var(--text-muted); margin: 0 0 1.2rem; }
+.hero h1 { font-size: 4.2rem; line-height: 1.04; margin: 0 0 1.5rem; letter-spacing: -.03em; }
+.tagline { font-size: 1.35rem; color: var(--text-muted); max-width: 46ch; margin: 0 auto; font-weight: 400; }
+
+section { padding: 5.5rem 0; }
+section h2 { font-size: 2.6rem; margin: 0 0 1.3rem; text-align: center; }
+section p { margin: 0 0 1.2rem; }
+.lede { font-size: 1.25rem; color: var(--text-muted); max-width: 56ch; margin-left: auto; margin-right: auto; text-align: center; }
+#framework p:not(.lede), #paper p, #about p { max-width: 62ch; margin-left: auto; margin-right: auto; }
+#framework, #about { text-align: center; }
+
+.domain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 2.5rem; margin-top: 3rem; }
+.domain-card { background: none; border: none; padding: 0; text-align: center; }
+.domain-card .tag { font: 700 .68rem/1 -apple-system, sans-serif; letter-spacing: .06em; padding: .3rem .7rem; border-radius: 999px; color: #fff; display: inline-block; margin-bottom: .9rem; }
+.domain-card h3 { font-size: 1.25rem; margin: 0 0 .5rem; }
+.domain-card p { font-size: .95rem; color: var(--text-muted); }
+.d1 .tag { background: var(--blue); } .d2 .tag { background: var(--coral); }
+.d3 .tag { background: var(--charcoal); } .d4 .tag { background: var(--sage); }
+.d5 .tag { background: var(--gold); color: #2a2200; } .d6 .tag { background: var(--navy); }
+
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: .95rem; }
+th, td { text-align: left; padding: .9rem 1rem; border-bottom: 1px solid var(--border); }
+th { color: var(--text-muted); font-weight: 600; }
+
+blockquote { margin: 2.5rem auto; padding: 0; border: none; color: var(--text); font-size: 1.6rem; font-weight: 500; text-align: center; max-width: 40ch; letter-spacing: -.01em; }
+
+.maturity-band { display: flex; gap: .7rem; justify-content: center; margin: 1.3rem 0 2rem; }
+.maturity-band span { font-size: .9rem; font-weight: 600; padding: .5rem 1.1rem; border-radius: 999px; background: var(--surface); color: var(--text); }
+
+.download-list { list-style: none; padding: 0; margin: 1.5rem auto; max-width: 480px; }
+.download-list li { display: flex; justify-content: space-between; padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
+.download-list .status { font-size: .85rem; color: var(--text-muted); }
+
+.site-footer { padding: 3rem 0 6rem; color: var(--text-muted); font-size: .85rem; text-align: center; }
+code { font: .88em ui-monospace, monospace; background: var(--surface); padding: .1em .4em; border-radius: 4px; }
+.wide-scroll { overflow-x: auto; }

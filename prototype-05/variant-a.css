@@ -1,0 +1,66 @@
+/* Variant A — Editorial. Warm paper ground, serif voice, generous line-length,
+   whitespace + rules instead of card borders. Reads like a considered essay. */
+:root {
+  --bg: #faf7f2;
+  --surface: #f2ede3;
+  --text: #241f1a;
+  --text-muted: #6b5f52;
+  --navy: #2f4d3a;
+  --blue: #6f8f9c; --coral: #b06a4a; --charcoal: #5c5348; --sage: #6f8a5a; --gold: #a67c2e;
+  --border: #e1d8c8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1912; --surface: #241f17; --text: #ece4d6; --text-muted: #b3a690;
+    --navy: #8fb59e; --border: #352d21;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 18px/1.7 Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+}
+h1, h2, h3, h4 { font-family: Georgia, "Iowan Old Style", serif; font-weight: 400; text-wrap: balance; }
+a { color: var(--navy); }
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 1.5rem; }
+.wide { max-width: 760px; }
+
+.topnav { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem 0; }
+.topnav .wrap { display: flex; gap: 1.8rem; align-items: baseline; }
+.brand { font: 700 1.05rem Georgia, serif; color: var(--text); text-decoration: none; margin-right: auto; }
+.topnav .link { font: italic .92rem Georgia, serif; color: var(--text-muted); text-decoration: none; }
+.topnav .link:hover { color: var(--navy); }
+
+.hero { padding: 6rem 0 4rem; }
+.eyebrow { font: italic 1rem Georgia, serif; color: var(--text-muted); margin: 0 0 .8rem; }
+.hero h1 { font-size: 3rem; line-height: 1.15; margin: 0 0 1.2rem; }
+.tagline { font-size: 1.2rem; color: var(--text-muted); font-style: italic; max-width: 56ch; margin: 0; }
+
+section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
+section:first-of-type { border-top: none; }
+section h2 { font-size: 1.9rem; margin: 0 0 1.3rem; }
+section p { margin: 0 0 1.1rem; }
+.lede { font-size: 1.15rem; font-style: italic; color: var(--text-muted); max-width: 58ch; }
+
+.domain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 2.2rem; margin-top: 2rem; }
+.domain-card { border-top: 2px solid var(--border); padding-top: 1rem; background: none; border-radius: 0; }
+.domain-card .tag { font: italic .8rem Georgia, serif; letter-spacing: 0; padding: 0; background: none !important; color: var(--navy) !important; display: block; margin-bottom: .3rem; }
+.domain-card h3 { font-size: 1.15rem; margin: 0 0 .4rem; }
+.domain-card p { font-size: .95rem; color: var(--text-muted); }
+
+table { width: 100%; border-collapse: collapse; margin: 1.3rem 0 1.8rem; font-size: .95rem; }
+th, td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid var(--border); }
+th { color: var(--text-muted); font-weight: 400; font-style: italic; }
+
+blockquote { margin: 1.8rem 0; padding: .3rem 0 .3rem 1.3rem; border-left: 2px solid var(--navy); color: var(--text-muted); font-style: italic; font-size: 1.15rem; }
+
+.maturity-band { display: flex; gap: 1.2rem; margin: 1.2rem 0 1.8rem; }
+.maturity-band span { font-style: italic; color: var(--text-muted); border-bottom: 1px solid var(--border); padding-bottom: .2rem; background: none; }
+
+.download-list { list-style: none; padding: 0; margin: 1.2rem 0; }
+.download-list li { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.download-list .status { font-style: italic; color: var(--text-muted); font-size: .9rem; }
+
+.site-footer { padding: 3rem 0 5rem; color: var(--text-muted); font-style: italic; }
+code { font: .85em ui-monospace, monospace; background: var(--surface); padding: .1em .3em; }
+.wide-scroll { overflow-x: auto; }

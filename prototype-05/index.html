@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>PROTOTYPE — CSEF visual design variants</title>
+<link id="variant-link" rel="stylesheet" href="variant-a.css">
+<style>
+  .proto-banner {
+    position: sticky; top: 0; z-index: 100;
+    background: #1a1a1a; color: #ffd23f;
+    font: 700 .78rem/1 ui-monospace, "SF Mono", Menlo, monospace;
+    letter-spacing: .04em; text-transform: uppercase;
+    padding: .55rem 1rem; text-align: center;
+  }
+  .proto-switcher {
+    position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+    z-index: 200;
+    background: #1a1a1a; border-radius: 999px;
+    padding: .4rem; display: flex; gap: .3rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  }
+  .proto-switcher button {
+    font: 600 .8rem/1 -apple-system, sans-serif;
+    padding: .5rem 1rem; border-radius: 999px; border: none;
+    background: transparent; color: #bbb; cursor: pointer;
+  }
+  .proto-switcher button.active { background: #ffd23f; color: #1a1a1a; }
+</style>
+</head>
+<body>
+
+<div class="proto-banner">PROTOTYPE — ticket 05 visual design variants — not the live site</div>
+
+<nav class="topnav">
+  <div class="wrap wide">
+    <a class="brand" href="#top">CSEF</a>
+    <a class="link" href="#framework">Framework</a>
+    <a class="link" href="#domains">Domains</a>
+    <a class="link" href="#paper">Read the paper</a>
+    <a class="link" href="#downloads">Downloads</a>
+    <a class="link" href="#about">About</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap wide">
+    <p class="eyebrow">customer security evangelism framework</p>
+    <h1>The Missing Security Program</h1>
+    <p class="tagline">Every SaaS platform invests heavily in securing its own infrastructure. Almost none invest in building the security capability of the people using it. That gap is where incidents live — and where CSEF starts.</p>
+  </div>
+</header>
+
+<section id="framework">
+  <div class="wrap wide">
+    <h2>The missing program</h2>
+    <p class="lede">NIST CSF 2.0, the CIS Controls, and the CSA Cloud Controls Matrix answer important questions about outcomes, controls, and responsibility. None of them answer a different question: how should a SaaS provider systematically build security awareness, behavior, and capability in the customers who share its risk?</p>
+    <p>In a November 2023 Rewind survey of 419 IT decision-makers, 79% said they believed SaaS applications include backup and recovery capabilities by default. What providers actually include — and what customers must protect themselves — varies by product and contract. The result shouldn't be generalized to every SaaS customer or responsibility; it's evidence that important assumptions can remain hidden even among IT decision-makers.</p>
+    <p><strong>Customer Security Evangelism is the structured practice of building security awareness, changing security behavior, and increasing security capability within a provider's customer base to reduce shared risk.</strong> Its primary output is a more capable and secure customer.</p>
+  </div>
+</section>
+
+<section id="domains">
+  <div class="wrap wide">
+    <h2>Five core domains, plus a collective-defense extension</h2>
+    <p class="lede">Each domain can be assessed against CSEF's own four-level practice-maturity model — Reactive, Defined, Measured, Adaptive. These are CSEF-specific levels, not NIST CSF Tiers.</p>
+    <div class="domain-grid">
+      <div class="domain-card d1"><span class="tag">D1</span><h3>Audience Intelligence</h3><p>Understand who the program needs to reach, what they currently believe and do, and what could move them to act.</p></div>
+      <div class="domain-card d2"><span class="tag">D2</span><h3>Narrative &amp; Content Design</h3><p>Translate technical security expectations into accurate, actionable communication for a specific audience.</p></div>
+      <div class="domain-card d3"><span class="tag">D3</span><h3>Channel &amp; Engagement Strategy</h3><p>Deliver the right intervention through the right channel, messenger, and moment.</p></div>
+      <div class="domain-card d4"><span class="tag">D4</span><h3>Trust &amp; Credibility</h3><p>Earn the confidence required for customers to believe and act on security guidance.</p></div>
+      <div class="domain-card d5"><span class="tag">D5</span><h3>Behavior Change Measurement</h3><p>Determine whether the program changes customer capability, and use the evidence to improve it.</p></div>
+      <div class="domain-card d6"><span class="tag">D6</span><h3>Coordinated Evangelism</h3><p>Extension: help providers serving shared customers reduce contradictory guidance and improve collective learning.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="paper">
+  <div class="wrap">
+    <h2>Read the full paper</h2>
+    <p class="lede">Working draft v0.2 — Mark Sayewich, July 2026. A working model to test, not an industry standard or a claim that one company has the final answer.</p>
+
+    <h3>Foreword</h3>
+    <p>SaaS providers invest heavily in securing the services they operate. Customers still make security decisions about identity, access, configuration, data, integrations, recovery, and use. Control frameworks and shared-responsibility models help describe those obligations. They do not tell a provider how to build the customer's ability and motivation to meet them.</p>
+    <p>Many providers already perform pieces of this work through documentation, customer success, product security, trust, training, community, and executive engagement. The practice is rarely treated as one operating discipline with clear boundaries and outcome measures.</p>
+
+    <h3>1. The missing program</h3>
+    <p>NIST Cybersecurity Framework (CSF) 2.0 provides a taxonomy of cybersecurity outcomes. The CIS Controls prioritize technical safeguards. The Cloud Security Alliance Cloud Controls Matrix (CCM) helps cloud providers and customers identify control applicability and ownership across cloud-service models.</p>
+    <blockquote>How should a SaaS provider systematically build security awareness, behavior, and capability in the customers who share its risk?</blockquote>
+
+    <h3>4. Framework architecture</h3>
+    <div class="wide-scroll">
+    <table>
+      <tr><th>Level</th><th>Name</th><th>Meaning</th></tr>
+      <tr><td>1</td><td>Reactive</td><td>Work is ad hoc, request-driven, and dependent on individual effort.</td></tr>
+      <tr><td>2</td><td>Defined</td><td>Purpose, ownership, audiences, and repeatable practices are documented.</td></tr>
+      <tr><td>3</td><td>Measured</td><td>The program uses evidence to assess reach, behavior, and capability outcomes.</td></tr>
+      <tr><td>4</td><td>Adaptive</td><td>Customer evidence continuously changes priorities, design, and delivery.</td></tr>
+    </table>
+    </div>
+
+    <h4>Domain 1 — Audience Intelligence</h4>
+    <p><strong>Purpose:</strong> Understand who the program needs to reach, what they currently believe and do, and what could move them to act.</p>
+    <ul>
+      <li>segment customers by role, context, <strong>customer security maturity</strong>, and relevant responsibilities;</li>
+      <li>identify the current behavior and the desired behavior for each priority segment;</li>
+      <li>map the customer journey from unfamiliarity to sustained practice and advocacy;</li>
+    </ul>
+    <div class="maturity-band">
+      <span>Novice</span><span>Developing</span><span>Advanced</span>
+    </div>
+  </div>
+</section>
+
+<section id="downloads">
+  <div class="wrap wide">
+    <h2>Downloads</h2>
+    <p class="lede">A save-and-forward version, for anyone who'd rather read this offline or hand it to a colleague.</p>
+    <ul class="download-list">
+      <li><span class="name">CSEF whitepaper (PDF)</span><span class="status">In progress — read the full text above for now</span></li>
+      <li><span class="name">CSEF one-pager (PDF)</span><span class="status">In progress — read the full text above for now</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>Mark Sayewich is Director of Customer Security Evangelism at Guidewire Software. His work focuses on helping insurance customers and partners understand shared responsibility, apply practical security guidance, and strengthen security capability.</p>
+    <p>No external standards body, conference, industry group, or employer has endorsed this working draft. Guidewire is identified as the author's employer, not as the owner of an industry standard. CSEF is Mark's individual working hypothesis, built from hands-on experience, offered here for peer review.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap wide">
+    <p>cseframework.org · Customer Security Evangelism Framework · Working draft v0.2</p>
+  </div>
+</footer>
+
+<div class="proto-switcher" id="switcher">
+  <button data-v="a">A · Editorial</button>
+  <button data-v="b">B · Technical</button>
+  <button data-v="c">C · Confident</button>
+</div>
+
+<script>
+  var params = new URLSearchParams(location.search);
+  var current = params.get('v') || 'a';
+  function apply(v) {
+    document.getElementById('variant-link').href = 'variant-' + v + '.css';
+    document.querySelectorAll('.proto-switcher button').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.v === v);
+    });
+    var url = new URL(location.href);
+    url.searchParams.set('v', v);
+    history.replaceState(null, '', url);
+  }
+  document.querySelectorAll('.proto-switcher button').forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.dataset.v); });
+  });
+  apply(current);
+</script>
+
+</body>
+</html>

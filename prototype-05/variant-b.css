@@ -1,0 +1,63 @@
+/* Variant B — Technical. Cool neutral ground, monospace carries labels and
+   structure, visible boxes/borders — reads like a spec document. */
+:root {
+  --bg: #f5f7f8; --surface: #ffffff; --text: #14202a; --text-muted: #56697a;
+  --navy: #204d68; --blue: #7bb5c7; --coral: #e68d6c; --charcoal: #595959; --sage: #8fa579; --gold: #c9962e;
+  --border: #d6dee3;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1318; --surface: #131a20; --text: #dfe8ed; --text-muted: #8fa3b0; --navy: #6fa8c4; --border: #223038;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15.5px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif; }
+h1, h2, h3, h4 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 700; text-wrap: balance; letter-spacing: -.01em; }
+a { color: var(--navy); }
+.wrap { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+.wide { max-width: 900px; }
+
+.topnav { position: sticky; top: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: .8rem 0; }
+.topnav .wrap { display: flex; gap: 1.5rem; align-items: center; }
+.brand { font: 700 .95rem ui-monospace, monospace; color: var(--navy); text-decoration: none; margin-right: auto; }
+.topnav .link { font: .78rem ui-monospace, monospace; color: var(--text-muted); text-decoration: none; text-transform: lowercase; }
+.topnav .link::before { content: "/"; opacity: .5; margin-right: .1rem; }
+.topnav .link:hover { color: var(--navy); }
+
+.hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+.eyebrow { font: 700 .72rem/1 ui-monospace, monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--navy); background: var(--surface); border: 1px solid var(--border); display: inline-block; padding: .3rem .6rem; border-radius: 3px; margin: 0 0 1.1rem; }
+.hero h1 { font-size: 2.15rem; line-height: 1.2; margin: 0 0 1rem; }
+.tagline { font-size: 1rem; color: var(--text-muted); max-width: 62ch; margin: 0; font-family: -apple-system, sans-serif; }
+
+section { padding: 2.6rem 0; border-top: 1px solid var(--border); }
+section:first-of-type { border-top: none; }
+section h2 { font-size: 1.3rem; margin: 0 0 1rem; }
+section h2::before { content: "## "; color: var(--text-muted); font-weight: 400; }
+section p { margin: 0 0 1rem; }
+.lede { font-size: 1rem; color: var(--text-muted); max-width: 64ch; border-left: 2px solid var(--border); padding-left: .9rem; }
+
+.domain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: .8rem; margin-top: 1.3rem; }
+.domain-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1rem; }
+.domain-card .tag { font: 700 .68rem ui-monospace, monospace; padding: .15rem .4rem; border-radius: 3px; color: #fff; }
+.domain-card h3 { font-size: .92rem; margin: .5rem 0 .35rem; font-family: -apple-system, sans-serif; }
+.domain-card p { font-size: .85rem; color: var(--text-muted); font-family: -apple-system, sans-serif; }
+.d1 .tag { background: var(--blue); } .d2 .tag { background: var(--coral); }
+.d3 .tag { background: var(--charcoal); } .d4 .tag { background: var(--sage); }
+.d5 .tag { background: var(--gold); color: #2a2200; } .d6 .tag { background: var(--navy); }
+
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .85rem; font-family: ui-monospace, monospace; }
+th, td { text-align: left; padding: .5rem .65rem; border: 1px solid var(--border); }
+th { background: var(--surface); color: var(--text-muted); }
+
+blockquote { margin: 1.2rem 0; padding: .9rem 1rem; background: var(--surface); border: 1px dashed var(--border); border-left: 3px solid var(--navy); color: var(--text-muted); font-family: ui-monospace, monospace; font-size: .9rem; }
+
+.maturity-band { display: flex; gap: .5rem; margin: 1rem 0 1.5rem; font-family: ui-monospace, monospace; }
+.maturity-band span { font-size: .78rem; padding: .3rem .6rem; border-radius: 3px; background: var(--surface); border: 1px solid var(--border); }
+
+.download-list { list-style: none; padding: 0; margin: 1rem 0; font-family: ui-monospace, monospace; font-size: .88rem; }
+.download-list li { display: flex; justify-content: space-between; padding: .7rem .8rem; border: 1px solid var(--border); border-radius: 4px; margin-bottom: .5rem; background: var(--surface); }
+.download-list .status { color: var(--text-muted); font-size: .78rem; }
+
+.site-footer { padding: 2rem 0 4rem; color: var(--text-muted); font: .78rem ui-monospace, monospace; }
+code { font: .88em ui-monospace, monospace; background: var(--surface); border: 1px solid var(--border); padding: .1em .35em; border-radius: 3px; }
+.wide-scroll { overflow-x: auto; }
