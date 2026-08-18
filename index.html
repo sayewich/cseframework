@@ -148,6 +148,23 @@
   code { font: .88em ui-monospace, "SF Mono", Menlo, monospace; background: var(--surface); padding: .1em .35em; border-radius: 3px; }
   .refs { font-size: .85rem; color: var(--text-muted); }
   .refs li { margin-bottom: .5rem; }
+
+  .print-link {
+    font: 600 .85rem -apple-system, sans-serif; color: var(--navy);
+    background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline;
+  }
+
+  @media print {
+    nav.topnav, header.hero .eyebrow, #downloads, footer.site-footer { display: none; }
+    section { padding: 1rem 0; break-inside: avoid; }
+    section.tinted { background: none; }
+    header.hero { padding: 1rem 0 2rem; text-align: left; }
+    header.hero h1 { font-size: 2rem; }
+    header.hero .wrap, #framework .wrap, #domains .wrap, #about .wrap { text-align: left; margin: 0; max-width: 100%; }
+    section p.lede { text-align: left; margin-left: 0; }
+    body { font-size: 12px; }
+    a { color: var(--text); text-decoration: underline; }
+  }
 </style>
 </head>
 <body>
@@ -393,10 +410,9 @@
 <section id="downloads" class="tinted">
   <div class="wrap wide">
     <h2>Downloads</h2>
-    <p class="lede">A save-and-forward version, for anyone who'd rather read this offline or hand it to a colleague.</p>
+    <p class="lede">A save-and-forward version, for anyone who'd rather read this offline or hand it to a colleague. Use your browser's print function and save as PDF, it's set up to print cleanly.</p>
     <ul class="download-list">
-      <li><span class="name">CSEF whitepaper (PDF)</span><span class="status">In progress. Read the full text above for now</span></li>
-      <li><span class="name">CSEF one-pager (PDF)</span><span class="status">In progress. Read the full text above for now</span></li>
+      <li><span class="name">CSEF whitepaper</span><span class="status"><button type="button" id="print-btn" class="print-link">Print or save as PDF</button></span></li>
     </ul>
   </div>
 </section>
@@ -407,6 +423,7 @@
     <p>Mark Sayewich is Director of Customer Security Evangelism at Guidewire Software. His work focuses on helping insurance customers and partners understand shared responsibility, apply practical security guidance, and strengthen security capability. He presented on Customer Security Evangelism at ISC2 Security Congress 2023 and is developing CSEF as a vendor-neutral working model for peer review.</p>
     <p>This version reflects early conversations with Guidewire colleagues and security practitioners. Individual reviewers and contributors will be credited with permission in future versions.</p>
     <p>No external standards body, conference, industry group, or employer has endorsed this working draft. Guidewire is identified as the author's employer, not as the owner of an industry standard. CSEF is Mark's individual working hypothesis, built from hands-on experience, offered here for peer review.</p>
+    <p>CSEF is a work in progress, not a finished standard. Found a gap, have a counterexample, or want to pilot a domain? Open an issue or a pull request at <a href="https://github.com/sayewich/cseframework">github.com/sayewich/cseframework</a>.</p>
   </div>
 </section>
 
@@ -415,6 +432,11 @@
     <p>cseframework.org &middot; Customer Security Evangelism Framework &middot; Working draft v0.2</p>
   </div>
 </footer>
+
+
+<script>
+  document.getElementById('print-btn').addEventListener('click', function () { window.print(); });
+</script>
 
 </body>
 </html>
