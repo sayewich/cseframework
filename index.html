@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CSEF — Customer Security Evangelism Framework</title>
-<meta name="description" content="A practical model for building security capability across the SaaS shared-responsibility line. Five operating domains, a maturity model, and a measurement approach — a working hypothesis open for peer review.">
+<title>CSEF: Customer Security Evangelism Framework</title>
+<meta name="description" content="A practical model for building security capability across the SaaS shared-responsibility line. Five operating domains, a maturity model, and a measurement approach, offered as a working hypothesis for peer review.">
 <link rel="canonical" href="https://cseframework.org/">
 <script type="application/ld+json">
 {
@@ -22,129 +22,126 @@
   "url": "https://cseframework.org/",
   "keywords": ["customer security evangelism", "SaaS shared responsibility", "security awareness", "behavior change", "security maturity model"],
   "isBasedOn": ["NIST CSF 2.0", "CIS Controls v8.1", "CSA CCM v4.1", "OWASP Security Culture"],
-  "creativeWorkStatus": "Working draft v0.2 — for peer review"
+  "creativeWorkStatus": "Working draft v0.2, for peer review"
 }
 </script>
 <style>
   :root {
     --bg: #ffffff;
-    --surface: #f7fafb;
-    --text: #16232e;
-    --text-muted: #4d5f6d;
+    --surface: #ecf7f9;
+    --text: #14202a;
+    --text-muted: #56697a;
     --navy: #204d68;
     --blue: #7bb5c7;
     --coral: #e68d6c;
     --charcoal: #595959;
-    --sage: #8fa579;
-    --gold: #c9962e;
-    --border: #e2e8ec;
+    --sage: #b2c49e;
+    --gold: #f6c343;
+    --border: #dbe9ee;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #12191f;
-      --surface: #182028;
+      --bg: #0d1318;
+      --surface: #16232a;
       --text: #e7edf1;
-      --text-muted: #9db0bd;
+      --text-muted: #93a4b2;
       --navy: #7bb5c7;
-      --border: #26323d;
-      --sage: #a9c290;
-      --gold: #e0ac3f;
+      --border: #223038;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #12191f;
-    --surface: #182028;
+    --bg: #0d1318;
+    --surface: #16232a;
     --text: #e7edf1;
-    --text-muted: #9db0bd;
+    --text-muted: #93a4b2;
     --navy: #7bb5c7;
-    --border: #26323d;
-    --sage: #a9c290;
-    --gold: #e0ac3f;
+    --border: #223038;
   }
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 17px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.55 -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: Georgia, "Iowan Old Style", serif; text-wrap: balance; font-weight: 400; }
+  h1, h2, h3, h4 { font-family: -apple-system, "SF Pro Display", "Segoe UI", sans-serif; font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
   a { color: var(--navy); }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
-  .wide { max-width: 880px; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 1.75rem; }
+  .wide { max-width: 900px; }
 
   nav.topnav {
     position: sticky; top: 0; z-index: 10;
-    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
-    padding: .9rem 0;
+    padding: 1rem 0;
   }
-  nav.topnav .wrap.wide { display: flex; align-items: center; gap: 1.6rem; }
-  nav.topnav .brand { font: 700 1rem Georgia, serif; color: var(--text); text-decoration: none; margin-right: auto; }
-  nav.topnav a.link { font-size: .85rem; color: var(--text-muted); text-decoration: none; }
-  nav.topnav a.link:hover { color: var(--navy); }
+  nav.topnav .wrap.wide { display: flex; align-items: center; gap: 2rem; }
+  nav.topnav .brand { font: 600 1rem -apple-system, sans-serif; color: var(--text); text-decoration: none; margin-right: auto; }
+  nav.topnav a.link { font: 500 .82rem -apple-system, sans-serif; color: var(--text-muted); text-decoration: none; }
+  nav.topnav a.link:hover { color: var(--text); }
 
-  header.hero { padding: 5rem 0 3.5rem; }
+  header.hero { padding: 7rem 0 4.5rem; text-align: center; }
+  header.hero .wrap { max-width: 780px; }
   header.hero .eyebrow {
-    font: 600 .74rem/1 ui-monospace, "SF Mono", Menlo, monospace;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
-    margin: 0 0 1rem;
+    font: 600 .85rem -apple-system, sans-serif; color: var(--navy);
+    margin: 0 0 1.2rem;
   }
-  header.hero h1 { font-size: 2.6rem; line-height: 1.15; margin: 0 0 1rem; }
-  header.hero p.tagline { font-size: 1.15rem; color: var(--text-muted); max-width: 60ch; margin: 0; }
+  header.hero h1 { font-size: 3.6rem; line-height: 1.06; margin: 0 0 1.4rem; letter-spacing: -.03em; }
+  header.hero p.tagline { font-size: 1.3rem; color: var(--text-muted); max-width: 48ch; margin: 0 auto; font-weight: 400; }
 
-  section { padding: 3rem 0; border-top: 1px solid var(--border); }
-  section:first-of-type { border-top: none; }
-  section h2 { font-size: 1.6rem; margin: 0 0 1.1rem; }
-  section p { margin: 0 0 1rem; }
-  section p.lede { font-size: 1.08rem; color: var(--text-muted); max-width: 62ch; }
+  section { padding: 4.5rem 0; }
+  section.tinted { background: var(--surface); }
+  section h2 { font-size: 2.2rem; margin: 0 0 1.2rem; text-align: center; }
+  section p { margin: 0 0 1.15rem; }
+  section p.lede { font-size: 1.18rem; color: var(--text-muted); max-width: 58ch; margin-left: auto; margin-right: auto; text-align: center; }
+  #framework p:not(.lede), #about p { max-width: 62ch; margin-left: auto; margin-right: auto; }
+  #framework, #about { text-align: center; }
+  #paper h2, #downloads h2 { text-align: left; }
+  #paper p.lede, #downloads p.lede { text-align: left; margin-left: 0; }
 
   .domain-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem; margin-top: 1.5rem;
+    gap: 2.2rem; margin-top: 2.6rem;
   }
-  .domain-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 1.1rem 1.2rem;
-  }
+  .domain-card { background: none; border: none; padding: 0; text-align: center; }
   .domain-card .tag {
-    display: inline-block; font: 700 .68rem/1 ui-monospace, monospace; letter-spacing: .05em;
-    padding: .2rem .45rem; border-radius: 4px; margin-bottom: .55rem; color: #fff;
+    display: inline-block; font: 700 .68rem/1 -apple-system, sans-serif; letter-spacing: .05em;
+    padding: .3rem .7rem; border-radius: 999px; margin-bottom: .8rem; color: #fff;
   }
-  .domain-card h3 { font-size: 1.02rem; margin: 0 0 .35rem; }
-  .domain-card p { font-size: .9rem; color: var(--text-muted); margin: 0; }
+  .domain-card h3 { font-size: 1.2rem; margin: 0 0 .45rem; }
+  .domain-card p { font-size: .95rem; color: var(--text-muted); margin: 0; }
   .d1 .tag { background: var(--blue); } .d2 .tag { background: var(--coral); }
-  .d3 .tag { background: var(--charcoal); } .d4 .tag { background: var(--sage); }
+  .d3 .tag { background: var(--charcoal); } .d4 .tag { background: var(--sage); color: #1c2a14; }
   .d5 .tag { background: var(--gold); color: #2a2200; } .d6 .tag { background: var(--navy); }
 
   table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .92rem; }
-  th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th, td { text-align: left; padding: .65rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--text-muted); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; }
   .wide-scroll { overflow-x: auto; }
 
   blockquote {
-    margin: 1.4rem 0; padding: .2rem 0 .2rem 1.1rem; border-left: 3px solid var(--navy);
-    color: var(--text-muted); font-style: italic;
+    margin: 1.6rem 0; padding: .2rem 0 .2rem 1.1rem; border-left: 3px solid var(--navy);
+    color: var(--text); font-style: italic; font-size: 1.1rem;
   }
 
   .maturity-band { display: flex; gap: .6rem; flex-wrap: wrap; margin: 1rem 0 1.5rem; }
   .maturity-band span {
-    font-size: .82rem; padding: .35rem .7rem; border-radius: 999px;
-    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+    font-size: .85rem; font-weight: 600; padding: .4rem .85rem; border-radius: 999px;
+    background: var(--surface); color: var(--text);
   }
 
   .download-list { list-style: none; padding: 0; margin: 1rem 0; }
   .download-list li {
     display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
-    padding: .8rem 0; border-bottom: 1px solid var(--border);
+    padding: .9rem 0; border-bottom: 1px solid var(--border);
   }
   .download-list .name { font-weight: 600; }
   .download-list .status { font-size: .8rem; color: var(--text-muted); }
 
   footer.site-footer {
-    padding: 2.5rem 0 4rem; color: var(--text-muted); font-size: .85rem;
+    padding: 3rem 0 5rem; color: var(--text-muted); font-size: .85rem; text-align: center;
   }
   footer.site-footer a { color: var(--text-muted); }
 
@@ -170,7 +167,7 @@
   <div class="wrap wide">
     <p class="eyebrow">customer security evangelism framework</p>
     <h1>The Missing Security Program</h1>
-    <p class="tagline">Every SaaS platform invests heavily in securing its own infrastructure. Almost none invest in building the security capability of the people using it. That gap is where incidents live — and where CSEF starts.</p>
+    <p class="tagline">Every SaaS platform invests heavily in securing its own infrastructure. Almost none invest in building the security capability of the people using it. That gap is where incidents live, and it's where CSEF starts.</p>
   </div>
 </header>
 
@@ -178,15 +175,15 @@
   <div class="wrap wide">
     <h2>The missing program</h2>
     <p class="lede">NIST CSF 2.0, the CIS Controls, and the CSA Cloud Controls Matrix answer important questions about outcomes, controls, and responsibility. None of them answer a different question: how should a SaaS provider systematically build security awareness, behavior, and capability in the customers who share its risk?</p>
-    <p>In a November 2023 Rewind survey of 419 IT decision-makers, 79% said they believed SaaS applications include backup and recovery capabilities by default. What providers actually include — and what customers must protect themselves — varies by product and contract. The result shouldn't be generalized to every SaaS customer or responsibility; it's evidence that important assumptions can remain hidden even among IT decision-makers.</p>
+    <p>In a November 2023 Rewind survey of 419 IT decision-makers, 79% said they believed SaaS applications include backup and recovery capabilities by default. What providers actually include, and what customers must protect themselves, varies by product and contract. The result shouldn't be generalized to every SaaS customer or responsibility; it's evidence that important assumptions can remain hidden even among IT decision-makers.</p>
     <p><strong>Customer Security Evangelism is the structured practice of building security awareness, changing security behavior, and increasing security capability within a provider's customer base to reduce shared risk.</strong> Its primary output is a more capable and secure customer.</p>
   </div>
 </section>
 
-<section id="domains">
+<section id="domains" class="tinted">
   <div class="wrap wide">
     <h2>Five core domains, plus a collective-defense extension</h2>
-    <p class="lede">Each domain can be assessed against CSEF's own four-level practice-maturity model — Reactive, Defined, Measured, Adaptive. These are CSEF-specific levels, not NIST CSF Tiers.</p>
+    <p class="lede">Each domain can be assessed against CSEF's own four-level practice-maturity model: Reactive, Defined, Measured, Adaptive. These are CSEF-specific levels, not NIST CSF Tiers.</p>
     <div class="domain-grid">
       <div class="domain-card d1"><span class="tag">D1</span><h3>Audience Intelligence</h3><p>Understand who the program needs to reach, what they currently believe and do, and what could move them to act.</p></div>
       <div class="domain-card d2"><span class="tag">D2</span><h3>Narrative &amp; Content Design</h3><p>Translate technical security expectations into accurate, actionable communication for a specific audience.</p></div>
@@ -201,18 +198,18 @@
 <section id="paper">
   <div class="wrap">
     <h2>Read the full paper</h2>
-    <p class="lede">Working draft v0.2 — Mark Sayewich, July 2026. A working model to test, not an industry standard or a claim that one company has the final answer.</p>
+    <p class="lede">Working draft v0.2. Mark Sayewich, July 2026. A working model to test, not an industry standard or a claim that one company has the final answer.</p>
 
     <h3>Foreword</h3>
     <p>SaaS providers invest heavily in securing the services they operate. Customers still make security decisions about identity, access, configuration, data, integrations, recovery, and use. Control frameworks and shared-responsibility models help describe those obligations. They do not tell a provider how to build the customer's ability and motivation to meet them.</p>
     <p>Many providers already perform pieces of this work through documentation, customer success, product security, trust, training, community, and executive engagement. The practice is rarely treated as one operating discipline with clear boundaries and outcome measures.</p>
-    <p>Customer Security Evangelism Framework (CSEF) is a proposed synthesis of that discipline. It is based on operating experience and ideas adapted from security frameworks, social and behavioral change, health literacy, diffusion research, and program evaluation. It is a working model to test — not an industry standard or a claim that one company has the final answer.</p>
+    <p>Customer Security Evangelism Framework (CSEF) is a proposed synthesis of that discipline. It is based on operating experience and ideas adapted from security frameworks, social and behavioral change, health literacy, diffusion research, and program evaluation. It is a working model to test, not an industry standard or a claim that one company has the final answer.</p>
 
     <h3>1. The missing program</h3>
     <p>NIST Cybersecurity Framework (CSF) 2.0 provides a taxonomy of cybersecurity outcomes. The CIS Controls prioritize technical safeguards. The Cloud Security Alliance Cloud Controls Matrix (CCM) helps cloud providers and customers identify control applicability and ownership across cloud-service models.</p>
     <p>These sources answer important questions about outcomes, controls, and responsibility. CSEF addresses a different question:</p>
     <blockquote>How should a SaaS provider systematically build security awareness, behavior, and capability in the customers who share its risk?</blockquote>
-    <p>That question matters because documenting responsibility does not ensure that a customer understands or acts on it. One vendor-sponsored 2024 survey of 419 IT decision-makers illustrates the potential gap: 79% of respondents said they believed SaaS applications included backup and recovery by default. What providers actually include — and what customers must protect themselves — varies by product and contract. The result should not be generalized to every SaaS customer or responsibility; it is evidence that important assumptions can remain hidden even among IT decision-makers.</p>
+    <p>That question matters because documenting responsibility does not ensure that a customer understands or acts on it. One vendor-sponsored 2024 survey of 419 IT decision-makers illustrates the potential gap: 79% of respondents said they believed SaaS applications included backup and recovery by default. What providers actually include, and what customers must protect themselves, varies by product and contract. The result should not be generalized to every SaaS customer or responsibility; it is evidence that important assumptions can remain hidden even among IT decision-makers.</p>
 
     <h3>2. Definition and boundaries</h3>
     <p><strong>Customer Security Evangelism is the structured practice of building security awareness, changing security behavior, and increasing security capability within a provider's customer base to reduce shared risk.</strong> Its primary output is a more capable and secure customer.</p>
@@ -239,7 +236,7 @@
 
     <h3>4. Framework architecture</h3>
     <p>CSEF has five core operating domains. A sixth extension applies when multiple providers coordinate for shared customers.</p>
-    <p><strong>CSEF maturity levels.</strong> Each domain can be assessed using four CSEF-specific levels — this grades the <em>provider's own program</em>, and is a separate scale from customer security maturity (see Domain 1 below):</p>
+    <p><strong>CSEF maturity levels.</strong> Each domain can be assessed using four CSEF-specific levels. This grades the <em>provider's own program</em>, and is a separate scale from customer security maturity (see Domain 1 below):</p>
     <div class="wide-scroll">
     <table>
       <tr><th>Level</th><th>Name</th><th>Meaning</th></tr>
@@ -253,7 +250,7 @@
 
     <h3>5. The five core domains</h3>
 
-    <h4>Domain 1 — Audience Intelligence</h4>
+    <h4>Domain 1: Audience Intelligence</h4>
     <p><strong>Purpose:</strong> Understand who the program needs to reach, what they currently believe and do, and what could move them to act.</p>
     <p>Security guidance lands differently with a CISO, cloud administrator, developer, risk leader, and executive sponsor. Effective work begins with evidence about the audience rather than assumptions about an "average customer."</p>
     <p>Key practices:</p>
@@ -265,13 +262,13 @@
       <li>use product or engagement telemetry only when appropriate, lawful, and interpreted with context;</li>
       <li>document barriers, incentives, trusted messengers, and moments when action is most likely.</li>
     </ul>
-    <p><strong>Customer security maturity</strong> is deliberately its own informal, qualitative band — distinct from the CSEF program-maturity levels above — used only for this kind of segmentation:</p>
+    <p><strong>Customer security maturity</strong> is deliberately its own informal, qualitative band, distinct from the CSEF program-maturity levels above, used only for this kind of segmentation:</p>
     <div class="maturity-band">
       <span>Novice</span><span>Developing</span><span>Advanced</span>
     </div>
     <p>The approach is informed by social and behavioral change practice. UNICEF's guidance recommends audience research, social listening or interviews, and attention to culture, language, literacy, trusted messengers, and current awareness before designing messages. The Health Belief Model is one useful lens for exploring perceived risk, expected benefit, barriers, cues to action, and self-efficacy; it is not a universal predictor or a CSEF measurement system.</p>
 
-    <h4>Domain 2 — Narrative and Content Design</h4>
+    <h4>Domain 2: Narrative and Content Design</h4>
     <p><strong>Purpose:</strong> Translate technical security expectations into accurate, actionable communication for a specific audience.</p>
     <p>Key practices:</p>
     <ul>
@@ -284,7 +281,7 @@
     </ul>
     <p>CDC defines plain language as communication an audience can understand the first time and recommends knowing the audience and purpose, putting the most important message first, using active voice, and limiting sentences to one idea. CSEF applies those principles to security communication.</p>
 
-    <h4>Domain 3 — Channel and Engagement Strategy</h4>
+    <h4>Domain 3: Channel and Engagement Strategy</h4>
     <p><strong>Purpose:</strong> Deliver the right intervention through the right channel, messenger, and moment.</p>
     <p>Key practices:</p>
     <ul>
@@ -297,7 +294,7 @@
     </ul>
     <p>Channel is part of the intervention. A correct message delivered where the intended audience will not see or trust it is not effective communication.</p>
 
-    <h4>Domain 4 — Trust and Credibility</h4>
+    <h4>Domain 4: Trust and Credibility</h4>
     <p><strong>Purpose:</strong> Earn the confidence required for customers to believe and act on security guidance.</p>
     <p>Key practices:</p>
     <ul>
@@ -310,13 +307,13 @@
     </ul>
     <p>Diffusion research emphasizes that adoption moves through social systems and is influenced by communication channels and opinion leadership. CSEF applies that insight without assuming that every customer community behaves identically.</p>
 
-    <h4>Domain 5 — Behavior Change Measurement</h4>
+    <h4>Domain 5: Behavior Change Measurement</h4>
     <p><strong>Purpose:</strong> Determine whether the program changes customer capability and use the evidence to improve it.</p>
     <p>Key practices:</p>
     <ul>
       <li>define a program logic connecting activity to near-term and longer-term outcomes;</li>
       <li>establish a baseline for the target segment and behavior;</li>
-      <li>use a measurement ladder: <em>delivery</em> (reached the audience) → <em>comprehension</em> (understood responsibility and action) → <em>intent</em> (decided to act) → <em>behavior</em> (action occurred) → <em>capability</em> (repeatable and sustained) → <em>risk outcome</em> (exposure or incident conditions changed);</li>
+      <li>use a measurement ladder: <em>delivery</em> (reached the audience), <em>comprehension</em> (understood responsibility and action), <em>intent</em> (decided to act), <em>behavior</em> (action occurred), <em>capability</em> (repeatable and sustained), <em>risk outcome</em> (exposure or incident conditions changed);</li>
       <li>combine quantitative measures with interviews and customer evidence;</li>
       <li>distinguish correlation, contribution, and causation;</li>
       <li>report what the program learned and changed, not only what it produced.</li>
@@ -324,7 +321,7 @@
     <p>CDC's current Program Evaluation Framework recommends assessing context, describing the program, focusing the evaluation design, gathering credible evidence, supporting conclusions, and acting on findings. CSEF borrows that learning discipline rather than claiming a security communication can always be isolated as the cause of a risk outcome.</p>
 
     <h3>6. Collective-defense extension</h3>
-    <h4>Domain 6 — Coordinated Evangelism</h4>
+    <h4>Domain 6: Coordinated Evangelism</h4>
     <p><strong>Purpose:</strong> Help providers serving shared customers reduce contradictory guidance and improve collective learning.</p>
     <p>Key practices:</p>
     <ul>
@@ -382,24 +379,24 @@
       <li>Cloud Security Alliance. (2026). <em>Introductory Guidance to Cloud Controls Matrix v4.1</em>. <a href="https://cloudsecurityalliance.org/artifacts/introductory-guidance-to-ccm">cloudsecurityalliance.org</a></li>
       <li>Rewind. (2024). <em>2024 State of SaaS Data and Recovery</em>. Survey of 419 IT decision-makers, November 2023, with Propeller Insights. <a href="https://rewind.com/wp-content/uploads/2024/05/RWD_SaaS_Data_Backup_Report_2024.pdf">rewind.com</a></li>
       <li>UNICEF. (2026). <em>A Social and Behavioural Change Message Guide</em>. <a href="https://www.unicef.org/reports/social-and-behavioural-change-message-guide">unicef.org</a></li>
-      <li>Rosenstock, I. M. (1974). "The Health Belief Model and Preventive Health Behavior." <em>Health Education Monographs</em>, 2, 354–386. <a href="https://doi.org/10.1177/109019817400200405">doi.org/10.1177/109019817400200405</a></li>
+      <li>Rosenstock, I. M. (1974). "The Health Belief Model and Preventive Health Behavior." <em>Health Education Monographs</em>, 2, 354 to 386. <a href="https://doi.org/10.1177/109019817400200405">doi.org/10.1177/109019817400200405</a></li>
       <li>Centers for Disease Control and Prevention. (2025). <em>Plain Language Materials &amp; Resources</em>. <a href="https://www.cdc.gov/health-literacy/php/develop-materials/plain-language.html">cdc.gov</a></li>
       <li>Rogers, E. M. (2003). <em>Diffusion of Innovations</em> (5th ed.). Free Press.</li>
-      <li>Kidder, D. P., et al. (2024). "CDC Program Evaluation Framework, 2024." <em>MMWR Recommendations and Reports</em>, 73(6), 1–37. <a href="https://www.cdc.gov/mmwr/volumes/73/rr/rr7306a1.htm">cdc.gov</a></li>
+      <li>Kidder, D. P., et al. (2024). "CDC Program Evaluation Framework, 2024." <em>MMWR Recommendations and Reports</em>, 73(6), 1 to 37. <a href="https://www.cdc.gov/mmwr/volumes/73/rr/rr7306a1.htm">cdc.gov</a></li>
       <li>FS-ISAC. (2026). <em>FS-ISAC Reveals New Strategy for Cybersecurity &amp; Resilience of the Global Financial System</em>. <a href="https://www.fsisac.com/newsroom/fsisac-reveals-new-strategy-for-cybersecurity-resilience-of-the-global-financial-system">fsisac.com</a></li>
       <li>OWASP Foundation. (2024). <em>OWASP Security Culture, version 1.1</em>. <a href="https://owasp.org/www-project-security-culture/">owasp.org</a></li>
-      <li>ISC2. (2023). <em>Five by Five: Cyber Leadership — ISC2 Security Congress 2023</em>. <a href="https://events.isc2.org/p/s/five-by-five-cyber-leadership-5992">events.isc2.org</a></li>
+      <li>ISC2. (2023). <em>Five by Five: Cyber Leadership, ISC2 Security Congress 2023</em>. <a href="https://events.isc2.org/p/s/five-by-five-cyber-leadership-5992">events.isc2.org</a></li>
     </ol>
   </div>
 </section>
 
-<section id="downloads">
+<section id="downloads" class="tinted">
   <div class="wrap wide">
     <h2>Downloads</h2>
     <p class="lede">A save-and-forward version, for anyone who'd rather read this offline or hand it to a colleague.</p>
     <ul class="download-list">
-      <li><span class="name">CSEF whitepaper (PDF)</span><span class="status">In progress — read the full text above for now</span></li>
-      <li><span class="name">CSEF one-pager (PDF)</span><span class="status">In progress — read the full text above for now</span></li>
+      <li><span class="name">CSEF whitepaper (PDF)</span><span class="status">In progress. Read the full text above for now</span></li>
+      <li><span class="name">CSEF one-pager (PDF)</span><span class="status">In progress. Read the full text above for now</span></li>
     </ul>
   </div>
 </section>
@@ -415,7 +412,7 @@
 
 <footer class="site-footer">
   <div class="wrap wide">
-    <p>cseframework.org · Customer Security Evangelism Framework · Working draft v0.2</p>
+    <p>cseframework.org &middot; Customer Security Evangelism Framework &middot; Working draft v0.2</p>
   </div>
 </footer>
 

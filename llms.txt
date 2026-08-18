@@ -1,6 +1,6 @@
 # Customer Security Evangelism Framework (CSEF)
 
-> A practical model for building security capability across the SaaS shared-responsibility line: five operating domains, a maturity model, and a measurement approach for building customer security awareness, behavior, and capability. Working draft v0.2, by Mark Sayewich — a working hypothesis open for peer review, not an established industry standard or a claim of company endorsement.
+> A practical model for building security capability across the SaaS shared-responsibility line: five operating domains, a maturity model, and a measurement approach for building customer security awareness, behavior, and capability. Working draft v0.2, by Mark Sayewich: a working hypothesis open for peer review, not an established industry standard or a claim of company endorsement.
 
 ## What this is
 
@@ -8,23 +8,23 @@ SaaS providers invest heavily in securing the services they operate, but rarely 
 
 ## The five core domains
 
-- **Audience Intelligence** — understand who the program needs to reach, what they currently believe and do, and what could move them to act. Introduces "customer security maturity" (novice / developing / advanced) as the customer-facing segmentation band — distinct from CSEF's own program-maturity levels below.
-- **Narrative and Content Design** — translate technical security expectations into accurate, actionable communication for a specific audience (strategic, tactical, operational).
-- **Channel and Engagement Strategy** — deliver the right intervention through the right channel, messenger, and moment.
-- **Trust and Credibility** — earn the confidence required for customers to believe and act on security guidance.
-- **Behavior Change Measurement** — determine whether the program changes customer capability, using a delivery → comprehension → intent → behavior → capability → risk-outcome ladder.
+- **Audience Intelligence**: understand who the program needs to reach, what they currently believe and do, and what could move them to act. Introduces "customer security maturity" (novice / developing / advanced) as the customer-facing segmentation band, distinct from CSEF's own program-maturity levels below.
+- **Narrative and Content Design**: translate technical security expectations into accurate, actionable communication for a specific audience (strategic, tactical, operational).
+- **Channel and Engagement Strategy**: deliver the right intervention through the right channel, messenger, and moment.
+- **Trust and Credibility**: earn the confidence required for customers to believe and act on security guidance.
+- **Behavior Change Measurement**: determine whether the program changes customer capability, using a measurement ladder from delivery to comprehension, intent, behavior, capability, and risk outcome.
 
 ## Collective-defense extension
 
-- **Coordinated Evangelism** (Domain 6) — for providers serving shared customers: reduce contradictory guidance, share vocabulary and vendor-neutral resources, improve collective learning.
+- **Coordinated Evangelism** (Domain 6): for providers serving shared customers, reduce contradictory guidance, share vocabulary and vendor-neutral resources, and improve collective learning.
 
 ## CSEF program-maturity levels
 
-A separate four-level scale — Reactive, Defined, Measured, Adaptive — for a provider to grade its own evangelism program. These are CSEF-specific levels, not NIST CSF Tiers, and are never used interchangeably with "customer security maturity" above.
+A separate four-level scale, Reactive, Defined, Measured, Adaptive, for a provider to grade its own evangelism program. These are CSEF-specific levels, not NIST CSF Tiers, and are never used interchangeably with "customer security maturity" above.
 
 ## Author and status
 
-Mark Sayewich, Director of Customer Security Evangelism, Guidewire Software. CSEF is his individual working hypothesis, offered for peer review — not an endorsed standard of Guidewire or any other organization.
+Mark Sayewich, Director of Customer Security Evangelism, Guidewire Software. CSEF is his individual working hypothesis, offered for peer review, not an endorsed standard of Guidewire or any other organization.
 
 ## Full content
 
